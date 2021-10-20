@@ -36,6 +36,21 @@ namespace homem5
             }
             return result;
         }
+        static double[] TemperatureValue(Dictionary<string, double[]> array)
+        {
+            string[] mounth = { "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь" };
+            double[] result = new double[array.Keys.Count];
+            for (int i = 0; i < array.Keys.Count; i++)
+            {
+                double sum = 0;
+                for (int j = 0; j < array.Values.Count; j++)
+                {
+                    sum += array[mounth[i]][j];
+                }
+                result[i] = sum / array.Keys.Count;
+            }
+            return result;
+        }
         static void PrintVowelsConsonants(string str)
         {
             char[] symbol = new char[str.Length];
@@ -147,7 +162,71 @@ namespace homem5
                 }
             }
             Console.WriteLine("Кол-во гласных в файле = " + countVowels);
-            Console.WriteLine("Кол-во согласных в файле = " + countConsonants);         
+            Console.WriteLine("Кол-во согласных в файле = " + countConsonants);
+
+            Console.WriteLine("homemet5");
+
+
+            Console.WriteLine("homemet6");
+            Dictionary<string, double[]> temperature1 = new Dictionary<string, double[]>();
+            int count = 12;
+            int maxTemp = 30;
+            int minTemp = -30;
+            for (int i = 0; i < count; i++)
+            {
+                double[] temperatureOfDay = new double[30];
+                for (int j = 0; j < temperatureOfDay.Length; j++)
+                {
+                    temperatureOfDay[j] = value.NextDouble() * (maxTemp - minTemp) + minTemp;
+                }
+                switch (i)
+                {
+                    case 0:
+                        temperature1.Add("Январь", temperatureOfDay);
+                        break;
+                    case 1:
+                        temperature1.Add("Февраль", temperatureOfDay);
+                        break;
+                    case 2:
+                        temperature1.Add("Март", temperatureOfDay);
+                        break;
+                    case 3:
+                        temperature1.Add("Апрель", temperatureOfDay);
+                        break;
+                    case 4:
+                        temperature1.Add("Май", temperatureOfDay);
+                        break;
+                    case 5:
+                        temperature1.Add("Июнь", temperatureOfDay);
+                        break;
+                    case 6:
+                        temperature1.Add("Июль", temperatureOfDay);
+                        break;
+                    case 7:
+                        temperature1.Add("Август", temperatureOfDay);
+                        break;
+                    case 8:
+                        temperature1.Add("Сентябрь", temperatureOfDay);
+                        break;
+                    case 9:
+                        temperature1.Add("Октябрь", temperatureOfDay);
+                        break;
+                    case 10:
+                        temperature1.Add("Ноябрь", temperatureOfDay);
+                        break;
+                    case 11:
+                        temperature1.Add("Декабрь", temperatureOfDay);
+                        break;
+                }
+            }
+            double[] avarageTemperature= TemperatureValue(temperature1);
+            Array.Sort(avarageTemperature);
+            Console.WriteLine("Средние значения температуры: ");
+            for (int i = 0; i < avarageTemperature.Length; i++)
+            {
+                Console.WriteLine(avarageTemperature[i]);
+            }
+            Console.ReadKey();
         }
     }
 }
